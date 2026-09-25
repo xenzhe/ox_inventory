@@ -11,7 +11,10 @@ import { isEnvBrowser } from './utils/misc';
 
 const root = document.getElementById('root');
 
-if (isEnvBrowser()) root!.classList.add('dev-scene');
+if (import.meta.env.DEV && isEnvBrowser()) {
+  root!.classList.add('dev-scene');
+  import('./dev').then(({ mountDevTools }) => mountDevTools());
+}
 
 createRoot(root!).render(
   <React.StrictMode>

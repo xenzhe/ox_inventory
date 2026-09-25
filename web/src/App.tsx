@@ -12,8 +12,6 @@ import { fetchNui } from './utils/fetchNui';
 import { useDragDropManager } from 'react-dnd';
 import KeyPress from './components/utils/KeyPress';
 
-if (import.meta.env.DEV) import('./utils/devData').then(({ loadDevData }) => loadDevData());
-
 const App: React.FC = () => {
   const dispatch = useAppDispatch();
   const manager = useDragDropManager();

@@ -16,10 +16,19 @@ const SlotContent: React.FC<Props> = ({ item, inventoryType, hotkey }) => {
 
   return (
     <>
-      <img className="slot-image" src={getItemUrl(item)} alt="" draggable={false} />
+      <img
+        key={getItemUrl(item)}
+        className="slot-image"
+        src={getItemUrl(item)}
+        alt=""
+        draggable={false}
+        onError={(event) => (event.currentTarget.style.visibility = 'hidden')}
+      />
       {hotkey !== undefined && <span className="slot-hotkey">{hotkey}</span>}
       {!isShop && item.weight > 0 && <span className="slot-weight">{formatWeight(item.weight)}</span>}
-      {isShop && item.count !== undefined && item.count > 0 && <span className="slot-weight">{item.count}</span>}
+      {isShop && item.count !== undefined && (
+        <span className={item.count > 0 ? 'slot-weight' : 'slot-weight slot-stock-out'}>{item.count}</span>
+      )}
       {isShop && item.price !== undefined && item.price > 0 ? (
         item.currency && item.currency !== 'money' && item.currency !== 'black_money' ? (
           <span className="slot-count slot-price">

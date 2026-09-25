@@ -88,7 +88,9 @@ const InventoryGrid: React.FC<{ inventory: Inventory; side: 'left' | 'right' }> 
   const titleKey = `ui_inv_${inventory.type}`;
   const title = Locale[titleKey] ?? inventory.label ?? inventory.type;
   const subtitle =
-    Locale[titleKey] !== undefined && inventory.label?.toLowerCase() !== title.toLowerCase() ? inventory.label : undefined;
+    Locale[titleKey] !== undefined && inventory.label?.toLowerCase() !== title.toLowerCase()
+      ? inventory.label
+      : undefined;
 
   return (
     <section className="panel inventory-panel" style={{ pointerEvents: isBusy ? 'none' : 'auto' }}>

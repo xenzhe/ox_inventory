@@ -19,8 +19,13 @@ window.XMLHttpRequest = window.fetch;
 
 const resourceName = (window as any).GetParentResourceName ? (window as any).GetParentResourceName() : 'ox_inventory';
 
+type DevHandler = (eventName: string, data: unknown) => unknown;
+let devHandler: DevHandler | undefined;
+
+export const setDevHandler = (handler: DevHandler) => (devHandler = handler);
+
 export async function fetchNui<T>(eventName: string, data?: unknown): Promise<T> {
-  if (isEnvBrowser()) return undefined as any; // HACK FOR BORING ERRORS IN DEV
+  if (isEnvBrowser()) return (devHandler ? await devHandler(eventName, data) : undefined) as T;
 
   try {
     const resp = await fetch(`https://${resourceName}/${eventName}`, {

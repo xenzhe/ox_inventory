@@ -5,7 +5,7 @@ import { DragSource, DropTarget, InventoryType, SlotWithItem } from '../typings'
 import { moveSlots, stackSlots, swapSlots } from '../store/inventory';
 import { Items } from '../store/items';
 
-export const onDrop = (source: DragSource, target?: DropTarget) => {
+export const onDrop = (source: DragSource, target?: DropTarget, amount?: number) => {
   const { inventory: state } = store.getState();
 
   const { sourceInventory, targetInventory } = getTargetInventory(state, source.inventory, target?.inventory);
@@ -38,11 +38,13 @@ export const onDrop = (source: DragSource, target?: DropTarget) => {
     return console.log(`Cannot swap item ${sourceSlot.name} with container ${targetSlot.name} when opened`);
 
   const count =
-    state.shiftPressed && sourceSlot.count > 1 && sourceInventory.type !== 'shop'
-      ? Math.floor(sourceSlot.count / 2)
-      : state.itemAmount === 0 || state.itemAmount > sourceSlot.count
-        ? sourceSlot.count
-        : state.itemAmount;
+    amount !== undefined && amount > 0
+      ? Math.min(amount, sourceSlot.count)
+      : state.shiftPressed && sourceSlot.count > 1 && sourceInventory.type !== 'shop'
+        ? Math.floor(sourceSlot.count / 2)
+        : state.itemAmount === 0 || state.itemAmount > sourceSlot.count
+          ? sourceSlot.count
+          : state.itemAmount;
 
   const data = {
     fromSlot: sourceSlot,

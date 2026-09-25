@@ -3,15 +3,15 @@ import { createPortal } from 'react-dom';
 import { TransitionGroup } from 'react-transition-group';
 import useNuiEvent from '../../hooks/useNuiEvent';
 import useQueue from '../../hooks/useQueue';
-import { Locale } from '../../store/locale';
-import { getItemUrl } from '../../helpers';
+import { t } from '../../store/locale';
+import { getItemLabel, getItemUrl } from '../../helpers';
 import { SlotWithItem } from '../../typings';
-import { Items } from '../../store/items';
 import Fade from './transitions/Fade';
 
 interface ItemNotificationProps {
   item: SlotWithItem;
   text: string;
+  count?: number;
 }
 
 export const ItemNotificationsContext = React.createContext<{
@@ -24,27 +24,22 @@ export const useItemNotifications = () => {
   return itemNotificationsContext;
 };
 
+const variants: Record<string, string> = {
+  ui_added: 'is-added',
+  ui_removed: 'is-removed',
+};
+
 const ItemNotification = React.forwardRef(
   (props: { item: ItemNotificationProps; style?: React.CSSProperties }, ref: React.ForwardedRef<HTMLDivElement>) => {
-    const slotItem = props.item.item;
+    const { item, text, count } = props.item;
+    const variant = variants[text];
+    const sign = text === 'ui_added' ? '+' : text === 'ui_removed' ? '-' : '';
 
     return (
-      <div
-        className="item-notification-item-box"
-        style={{
-          backgroundImage: `url(${getItemUrl(slotItem) || 'none'}`,
-          ...props.style,
-        }}
-        ref={ref}
-      >
-        <div className="item-slot-wrapper">
-          <div className="item-notification-action-box">
-            <p>{props.item.text}</p>
-          </div>
-          <div className="inventory-slot-label-box">
-            <div className="inventory-slot-label-text">{slotItem.metadata?.label || Items[slotItem.name]?.label}</div>
-          </div>
-        </div>
+      <div className={`panel item-notification ${variant || 'is-status'}`} style={props.style} ref={ref}>
+        <img src={getItemUrl(item)} alt="" />
+        <b>{getItemLabel(item)}</b>
+        <span>{variant && count ? `${sign}${count.toLocaleString('en-US')}` : t(text)}</span>
       </div>
     );
   }
@@ -70,16 +65,16 @@ export const ItemNotificationsProvider = ({ children }: { children: React.ReactN
   };
 
   useNuiEvent<[item: SlotWithItem, text: string, count?: number]>('itemNotify', ([item, text, count]) => {
-    add({ item: item, text: count ? `${Locale[text]} ${count}x` : `${Locale[text]}` });
+    add({ item, text, count });
   });
 
   return (
     <ItemNotificationsContext.Provider value={{ add }}>
       {children}
       {createPortal(
-        <TransitionGroup className="item-notification-container">
-          {queue.values.map((notification, index) => (
-            <Fade key={`item-notification-${index}`}>
+        <TransitionGroup className="item-notifications">
+          {queue.values.map((notification) => (
+            <Fade key={`item-notification-${notification.id}`}>
               <ItemNotification item={notification.item} ref={notification.ref} />
             </Fade>
           ))}

@@ -39,6 +39,7 @@ files {
     'web/build/index.html',
     'web/build/assets/*.js',
     'web/build/assets/*.css',
+    'web/build/assets/*.woff2',
     'web/images/*.png',
     'modules/**/shared.lua',
     'modules/**/client.lua',

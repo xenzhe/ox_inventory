@@ -1,12 +1,18 @@
 import { Inventory, SlotWithItem } from '../../typings';
 import React, { Fragment, useMemo } from 'react';
 import { Items } from '../../store/items';
-import { Locale } from '../../store/locale';
+import { t } from '../../store/locale';
 import { useAppSelector } from '../../store';
-import ClockIcon from '../utils/icons/ClockIcon';
-import { getItemUrl } from '../../helpers';
-import Divider from '../utils/Divider';
+import { durabilityLevel, formatWeight, getItemLabel, getItemUrl, getRarity } from '../../helpers';
 import Markdown from '../utils/Markdown';
+import Icon, { Hint, Key } from '../utils/Icon';
+
+const Row: React.FC<{ label: string; children: React.ReactNode }> = ({ label, children }) => (
+  <>
+    <dt>{label}</dt>
+    <dd>{children}</dd>
+  </>
+);
 
 const SlotTooltip: React.ForwardRefRenderFunction<
   HTMLDivElement,
@@ -19,104 +25,92 @@ const SlotTooltip: React.ForwardRefRenderFunction<
     return Object.entries(item.ingredients).sort((a, b) => a[1] - b[1]);
   }, [item]);
   const description = item.metadata?.description || itemData?.description;
-  const ammoName = itemData?.ammoName && Items[itemData?.ammoName]?.label;
+  const ammoName = itemData?.ammoName && Items[itemData.ammoName]?.label;
+  const rarity = getRarity(item);
+  const isCrafting = inventoryType === 'crafting';
+  const unitWeight = item.count > 1 ? item.weight / item.count : item.weight;
+  const components: string[] = item.metadata?.components || [];
+
+  const subtitle = item.metadata?.type || (rarity?.tier ? t(`ui_rarity_${rarity.tier}`) : undefined);
 
   return (
-    <>
-      {!itemData ? (
-        <div className="tooltip-wrapper" ref={ref} style={style}>
-          <div className="tooltip-header-wrapper">
-            <p>{item.name}</p>
-          </div>
-          <Divider />
+    <div
+      className="panel tooltip"
+      ref={ref}
+      data-rarity={rarity?.tier}
+      style={{ ...style, ...(rarity?.color ? { '--rarity': rarity.color } : {}) } as React.CSSProperties}
+    >
+      <div className="tooltip-header">
+        <div>
+          <b>{getItemLabel(item)}</b>
+          {subtitle && <span className={rarity ? 'tooltip-rarity' : undefined}>{subtitle}</span>}
         </div>
+        {isCrafting ? (
+          <small className="tooltip-duration">
+            <Icon name="clock" />
+            {(item.duration !== undefined ? item.duration : 3000) / 1000}s
+          </small>
+        ) : (
+          <small>{item.name}</small>
+        )}
+      </div>
+
+      {description && <Markdown content={description} className="tooltip-description" />}
+
+      {isCrafting ? (
+        ingredients && (
+          <ul className="tooltip-ingredients">
+            {ingredients.map(([name, count]) => (
+              <li key={`ingredient-${name}`}>
+                <img src={getItemUrl(name)} alt="" />
+                <span>{Items[name]?.label || name}</span>
+                <em>{count >= 1 ? `×${count}` : count === 0 ? '' : `${count * 100}%`}</em>
+              </li>
+            ))}
+          </ul>
+        )
       ) : (
-        <div style={{ ...style }} className="tooltip-wrapper" ref={ref}>
-          <div className="tooltip-header-wrapper">
-            <p>{item.metadata?.label || itemData.label || item.name}</p>
-            {inventoryType === 'crafting' ? (
-              <div className="tooltip-crafting-duration">
-                <ClockIcon />
-                <p>{(item.duration !== undefined ? item.duration : 3000) / 1000}s</p>
-              </div>
-            ) : (
-              <p>{item.metadata?.type}</p>
-            )}
-          </div>
-          <Divider />
-          {description && (
-            <div className="tooltip-description">
-              <Markdown content={description} className="tooltip-markdown" />
-            </div>
+        <dl className="tooltip-stats">
+          {item.weight > 0 && (
+            <Row label={t('ui_weight')}>
+              {item.count > 1
+                ? `${formatWeight(unitWeight)} · ${formatWeight(item.weight)} ${t('ui_kg')}`
+                : `${formatWeight(item.weight)} ${t('ui_kg')}`}
+            </Row>
           )}
-          {inventoryType !== 'crafting' ? (
-            <>
-              {item.durability !== undefined && (
-                <p>
-                  {Locale.ui_durability}: {Math.trunc(item.durability)}
-                </p>
-              )}
-              {item.metadata?.ammo !== undefined && (
-                <p>
-                  {Locale.ui_ammo}: {item.metadata.ammo}
-                </p>
-              )}
-              {ammoName && (
-                <p>
-                  {Locale.ammo_type}: {ammoName}
-                </p>
-              )}
-              {item.metadata?.serial && (
-                <p>
-                  {Locale.ui_serial}: {item.metadata.serial}
-                </p>
-              )}
-              {item.metadata?.components && item.metadata?.components[0] && (
-                <p>
-                  {Locale.ui_components}:{' '}
-                  {(item.metadata?.components).map((component: string, index: number, array: []) =>
-                    index + 1 === array.length ? Items[component]?.label : Items[component]?.label + ', '
-                  )}
-                </p>
-              )}
-              {item.metadata?.weapontint && (
-                <p>
-                  {Locale.ui_tint}: {item.metadata.weapontint}
-                </p>
-              )}
-              {additionalMetadata.map((data: { metadata: string; value: string }, index: number) => (
-                <Fragment key={`metadata-${index}`}>
-                  {item.metadata && item.metadata[data.metadata] && (
-                    <p>
-                      {data.value}: {item.metadata[data.metadata]}
-                    </p>
-                  )}
-                </Fragment>
-              ))}
-            </>
-          ) : (
-            <div className="tooltip-ingredients">
-              {ingredients &&
-                ingredients.map((ingredient) => {
-                  const [item, count] = [ingredient[0], ingredient[1]];
-                  return (
-                    <div className="tooltip-ingredient" key={`ingredient-${item}`}>
-                      <img src={item ? getItemUrl(item) : 'none'} alt="item-image" />
-                      <p>
-                        {count >= 1
-                          ? `${count}x ${Items[item]?.label || item}`
-                          : count === 0
-                            ? `${Items[item]?.label || item}`
-                            : count < 1 && `${count * 100}% ${Items[item]?.label || item}`}
-                      </p>
-                    </div>
-                  );
-                })}
-            </div>
+          {item.durability !== undefined && (
+            <Row label={t('ui_durability')}>
+              <span className={`meter is-${durabilityLevel(item.durability)}`}>
+                <i style={{ width: `${Math.max(0, Math.min(100, item.durability))}%` }} />
+              </span>
+              {Math.trunc(item.durability)}%
+            </Row>
           )}
+          {item.metadata?.ammo !== undefined && <Row label={t('ui_ammo')}>{item.metadata.ammo}</Row>}
+          {ammoName && <Row label={t('ui_ammo_type')}>{ammoName}</Row>}
+          {item.metadata?.serial && <Row label={t('ui_serial')}>{item.metadata.serial}</Row>}
+          {components.length > 0 && (
+            <Row label={t('ui_components')}>{components.map((c) => Items[c]?.label || c).join(', ')}</Row>
+          )}
+          {item.metadata?.weapontint && <Row label={t('ui_tint')}>{item.metadata.weapontint}</Row>}
+          {additionalMetadata.map((data, index) => (
+            <Fragment key={`metadata-${index}`}>
+              {item.metadata && item.metadata[data.metadata] && (
+                <Row label={data.value}>{String(item.metadata[data.metadata])}</Row>
+              )}
+            </Fragment>
+          ))}
+        </dl>
+      )}
+
+      {inventoryType === 'player' && (
+        <div className="tooltip-footer">
+          <Hint mouse="drag" label={t('ui_hint_move')} />
+          <Hint mouse="right" label={t('ui_hint_options')} />
+          <Hint keys={<Key>{t('ui_key_alt')}</Key>} mouse="left" label={t('ui_use')} />
         </div>
       )}
-    </>
+    </div>
   );
 };
 

@@ -6,6 +6,11 @@ export default defineConfig({
   plugins: [react()],
   base: './',
   publicDir: false,
+  server: {
+    fs: {
+      allow: ['..'],
+    },
+  },
   build: {
     outDir: 'build',
     target: 'esnext',

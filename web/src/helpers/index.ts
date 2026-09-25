@@ -160,3 +160,21 @@ export const getItemUrl = (item: string | SlotWithItem) => {
 
   return itemData.image;
 };
+
+export const formatWeight = (grams: number) => {
+  const kg = grams / 1000;
+  return kg.toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: kg > 0 && kg < 0.1 ? 2 : 1 });
+};
+
+export const getItemLabel = (item: SlotWithItem) => item.metadata?.label || Items[item.name]?.label || item.name;
+
+const rarities = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
+
+export const getRarity = (item: SlotWithItem): { tier?: string; color?: string } | undefined => {
+  const value: unknown = item.metadata?.rarity ?? Items[item.name]?.rarity;
+  if (typeof value !== 'string' || value === '' || value === 'common') return;
+  if (rarities.includes(value)) return { tier: value };
+  if (/^#[0-9a-f]{6}$/i.test(value)) return { color: value };
+};
+
+export const durabilityLevel = (durability: number) => (durability > 50 ? 'ok' : durability > 20 ? 'mid' : 'low');

@@ -1,4 +1,4 @@
-import { Locale } from '../../store/locale';
+import { t } from '../../store/locale';
 import React from 'react';
 import {
   FloatingFocusManager,
@@ -9,11 +9,21 @@ import {
   useInteractions,
   useTransitionStyles,
 } from '@floating-ui/react';
+import Icon, { Key, Mouse, MouseAction } from '../utils/Icon';
 
 interface Props {
   infoVisible: boolean;
   setInfoVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+const controls: { keys?: string[]; mouse: MouseAction; label: string }[] = [
+  { mouse: 'right', label: 'ui_rmb' },
+  { keys: ['alt'], mouse: 'left', label: 'ui_alt_lmb' },
+  { keys: ['ctrl'], mouse: 'left', label: 'ui_ctrl_lmb' },
+  { keys: ['shift'], mouse: 'drag', label: 'ui_shift_drag' },
+  { keys: ['ctrl', 'shift'], mouse: 'left', label: 'ui_ctrl_shift_lmb' },
+  { mouse: 'wheel', label: 'ui_wheel_amount' },
+];
 
 const UsefulControls: React.FC<Props> = ({ infoVisible, setInfoVisible }) => {
   const { refs, context } = useFloating({
@@ -25,7 +35,7 @@ const UsefulControls: React.FC<Props> = ({ infoVisible, setInfoVisible }) => {
     outsidePressEvent: 'mousedown',
   });
 
-  const { isMounted, styles } = useTransitionStyles(context);
+  const { isMounted, styles } = useTransitionStyles(context, { duration: 160 });
 
   const { getFloatingProps } = useInteractions([dismiss]);
 
@@ -33,45 +43,36 @@ const UsefulControls: React.FC<Props> = ({ infoVisible, setInfoVisible }) => {
     <>
       {isMounted && (
         <FloatingPortal>
-          <FloatingOverlay lockScroll className="useful-controls-dialog-overlay" data-open={infoVisible} style={styles}>
+          <FloatingOverlay lockScroll className="controls-overlay" data-open={infoVisible} style={styles}>
             <FloatingFocusManager context={context}>
-              <div ref={refs.setFloating} {...getFloatingProps()} className="useful-controls-dialog" style={styles}>
-                <div className="useful-controls-dialog-title">
-                  <p>{Locale.ui_usefulcontrols || 'Useful controls'}</p>
-                  <div className="useful-controls-dialog-close" onClick={() => setInfoVisible(false)}>
-                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 400 528">
-                      <path d="M376.6 84.5c11.3-13.6 9.5-33.8-4.1-45.1s-33.8-9.5-45.1 4.1L192 206 56.6 43.5C45.3 29.9 25.1 28.1 11.5 39.4S-3.9 70.9 7.4 84.5L150.3 256 7.4 427.5c-11.3 13.6-9.5 33.8 4.1 45.1s33.8 9.5 45.1-4.1L192 306 327.4 468.5c11.3 13.6 31.5 15.4 45.1 4.1s15.4-31.5 4.1-45.1L233.7 256 376.6 84.5z" />
-                    </svg>
+              <div ref={refs.setFloating} {...getFloatingProps()} className="panel controls-dialog" style={styles}>
+                <header className="panel-header">
+                  <div className="panel-icon">
+                    <Icon name="help" />
                   </div>
-                </div>
-                <div className="useful-controls-content-wrapper">
-                  <p>
-                    <kbd>RMB</kbd>
-                    <br />
-                    {Locale.ui_rmb}
-                  </p>
-                  <p>
-                    <kbd>ALT + LMB</kbd>
-                    <br />
-                    {Locale.ui_alt_lmb}
-                  </p>
-                  <p>
-                    <kbd>CTRL + LMB</kbd>
-                    <br />
-                    {Locale.ui_ctrl_lmb}
-                  </p>
-                  <p>
-                    <kbd>SHIFT + Drag</kbd>
-                    <br />
-                    {Locale.ui_shift_drag}
-                  </p>
-                  <p>
-                    <kbd>CTRL + SHIFT + LMB</kbd>
-                    <br />
-                    {Locale.ui_ctrl_shift_lmb}
-                  </p>
-                  <div style={{ textAlign: 'right' }}>🐂</div>
-                </div>
+                  <div className="panel-title">
+                    <b>{t('ui_usefulcontrols')}</b>
+                  </div>
+                  <button type="button" className="icon-button" onClick={() => setInfoVisible(false)}>
+                    <Icon name="x" />
+                  </button>
+                </header>
+                <ul className="controls-list">
+                  {controls.map((control) => (
+                    <li key={control.label}>
+                      <span className="controls-combo">
+                        {control.keys?.map((key) => (
+                          <React.Fragment key={key}>
+                            <Key>{t(`ui_key_${key}`)}</Key>
+                            <span className="hint-plus">+</span>
+                          </React.Fragment>
+                        ))}
+                        <Mouse action={control.mouse} />
+                      </span>
+                      <span>{t(control.label)}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </FloatingFocusManager>
           </FloatingOverlay>

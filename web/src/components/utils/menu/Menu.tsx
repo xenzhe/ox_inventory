@@ -30,6 +30,7 @@ import {
 } from '@floating-ui/react';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useAppSelector } from '../../../store';
+import Icon, { IconName } from '../Icon';
 
 const MenuContext = React.createContext<{
   getItemProps: (userProps?: React.HTMLProps<HTMLElement>) => Record<string, unknown>;
@@ -47,12 +48,13 @@ const MenuContext = React.createContext<{
 
 interface MenuProps {
   label?: string;
+  icon?: IconName;
   nested?: boolean;
   children?: React.ReactNode;
 }
 
 export const MenuComponent = React.forwardRef<HTMLButtonElement, MenuProps & React.HTMLProps<HTMLButtonElement>>(
-  ({ children, label, ...props }, forwardedRef) => {
+  ({ children, label, icon, ...props }, forwardedRef) => {
     const menu = useAppSelector((state) => state.contextMenu);
     const [isOpen, setIsOpen] = useState(false);
     const [hasFocusInside, setHasFocusInside] = useState(false);
@@ -192,12 +194,9 @@ export const MenuComponent = React.forwardRef<HTMLButtonElement, MenuProps & Rea
               })
             )}
           >
-            {label}
-            {isNested && (
-              <span aria-hidden style={{ marginLeft: 10, fontSize: 10 }}>
-                ▶
-              </span>
-            )}
+            {icon && <Icon name={icon} />}
+            <span className="context-menu-label">{label}</span>
+            <Icon name="chevron" className="context-menu-chevron" />
           </button>
         )}
         <MenuContext.Provider
@@ -236,12 +235,16 @@ export const MenuComponent = React.forwardRef<HTMLButtonElement, MenuProps & Rea
 interface MenuItemProps {
   label: string;
   disabled?: boolean;
+  icon?: IconName;
+  meta?: React.ReactNode;
+  shortcut?: string;
+  danger?: boolean;
 }
 
 export const MenuItem = React.forwardRef<
   HTMLButtonElement,
   MenuItemProps & React.ButtonHTMLAttributes<HTMLButtonElement>
->(({ label, disabled, ...props }, forwardedRef) => {
+>(({ label, disabled, icon, meta, shortcut, danger, ...props }, forwardedRef) => {
   const menu = useContext(MenuContext);
   const item = useListItem({ label: disabled ? null : label });
   const tree = useFloatingTree();
@@ -253,7 +256,7 @@ export const MenuItem = React.forwardRef<
       ref={useMergeRefs([item.ref, forwardedRef])}
       type="button"
       role="menuitem"
-      className="context-menu-item"
+      className={danger ? 'context-menu-item is-danger' : 'context-menu-item'}
       tabIndex={isActive ? 0 : -1}
       disabled={disabled}
       {...menu.getItemProps({
@@ -267,7 +270,10 @@ export const MenuItem = React.forwardRef<
         },
       })}
     >
-      {label}
+      {icon && <Icon name={icon} />}
+      <span className="context-menu-label">{label}</span>
+      {meta !== undefined && <em className="context-menu-meta">{meta}</em>}
+      {shortcut && <kbd className="context-menu-shortcut">{shortcut}</kbd>}
     </button>
   );
 });

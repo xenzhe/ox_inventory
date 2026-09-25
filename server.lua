@@ -15,6 +15,8 @@ local Items = require 'modules.items.server'
 local Inventory = require 'modules.inventory.server'
 local Utils = require 'modules.utils.server'
 
+require 'modules.worldgive.server'
+
 ---@param player table
 ---@param data table?
 --- player requires source, identifier, and name

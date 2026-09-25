@@ -7,7 +7,7 @@ import { setDevHandler } from '../utils/fetchNui';
 import { applyAccent } from '../utils/theme';
 import { isSlotWithItem } from '../helpers';
 import { itemDefs, player, scenarios } from './data';
-import { devHandler, LogEntry, onLog, send, settings, syncItemCounts } from './nui';
+import { devHandler, LogEntry, onLog, send, settings, syncItemCounts, worldPeds } from './nui';
 import './dev.scss';
 
 const localeFiles = import.meta.glob<string>('../../../locales/{en,es}.json', { query: '?raw', import: 'default' });
@@ -275,6 +275,19 @@ export const mountDevTools = async () => {
   loadItems();
   await loadLocale(storage.get('lang') ?? 'es');
   applyAccent(storage.get('accent') ?? undefined);
+
+  const scene = document.createElement('div');
+  scene.className = 'dev-scene';
+  for (const ped of worldPeds) {
+    const figure = document.createElement('div');
+    figure.className = 'dev-ped';
+    const height = (ped.bottom - ped.top) * 100;
+    figure.style.top = `${ped.top * 100}vh`;
+    figure.style.height = `${height}vh`;
+    figure.style.left = `calc(${ped.x * 100}vw - ${height * 0.18}vh)`;
+    scene.appendChild(figure);
+  }
+  document.body.prepend(scene);
 
   const host = document.createElement('div');
   host.id = 'devtools';

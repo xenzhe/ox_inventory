@@ -19,7 +19,9 @@ shared = {
     playerweight = GetConvarInt('inventory:weight', 30000),
     target = GetConvarBool('inventory:target', false),
     police = json.decode(GetConvar('inventory:police', '["police", "sheriff"]')),
-    networkdumpsters = GetConvarBool('inventory:networkdumpsters', false)
+    networkdumpsters = GetConvarBool('inventory:networkdumpsters', false),
+    worldgive = GetConvarBool('inventory:worldgive', true),
+    worldgivedistance = tonumber(GetConvar('inventory:worldgivedistance', '3.0')) or 3.0,
 }
 
 shared.dropslots = GetConvarInt('inventory:dropslots', shared.playerslots)

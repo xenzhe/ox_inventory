@@ -2578,6 +2578,8 @@ local function giveItem(playerId, slot, target, count)
 	end
 end
 
+Inventory.GiveItem = giveItem
+
 lib.callback.register('ox_inventory:giveItem', giveItem)
 RegisterServerEvent('ox_inventory:giveItem', function(...) giveItem(source, ...) end)
 

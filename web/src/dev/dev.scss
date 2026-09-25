@@ -184,3 +184,48 @@
     color: #6fae7a;
   }
 }
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+.dev-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(120% 70% at 70% 110%, #3b2a22 0%, transparent 60%),
+    radial-gradient(90% 60% at 15% 20%, #2c3a44 0%, transparent 65%),
+    linear-gradient(180deg, #56626b 0%, #39403f 45%, #2a2622 70%, #1b1816 100%);
+}
+
+.dev-ped {
+  position: absolute;
+  aspect-ratio: 0.36;
+  background: linear-gradient(180deg, #1c1c1f, #0e0e10);
+  clip-path: polygon(
+    38% 0,
+    62% 0,
+    66% 12%,
+    60% 17%,
+    86% 22%,
+    96% 55%,
+    84% 56%,
+    76% 34%,
+    72% 58%,
+    74% 100%,
+    56% 100%,
+    50% 62%,
+    44% 100%,
+    26% 100%,
+    28% 58%,
+    24% 34%,
+    16% 56%,
+    4% 55%,
+    14% 22%,
+    40% 17%,
+    34% 12%
+  );
+  opacity: 0.85;
+}

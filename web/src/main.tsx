@@ -12,7 +12,6 @@ import { isEnvBrowser } from './utils/misc';
 const root = document.getElementById('root');
 
 if (import.meta.env.DEV && isEnvBrowser()) {
-  root!.classList.add('dev-scene');
   import('./dev').then(({ mountDevTools }) => mountDevTools());
 }
 

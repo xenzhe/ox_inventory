@@ -9,6 +9,11 @@ export const send = (action: string, data?: unknown) =>
 
 export const settings = { rejectNext: false, latency: 120 };
 
+export const worldPeds = [
+  { key: 'npc', x: 0.875, top: 0.3, bottom: 0.82, npc: true },
+  { key: 'p:27', x: 0.205, top: 0.46, bottom: 0.7, reason: 'far' },
+];
+
 export type LogEntry = { time: string; event: string; data: string; result: string };
 const logListeners = new Set<(log: LogEntry[]) => void>();
 let log: LogEntry[] = [];
@@ -174,6 +179,19 @@ const handlers: Record<string, (data: any) => unknown | Promise<unknown>> = {
     update(left(), [{ ...item, metadata: { ...item.metadata, components } }]);
     setTimeout(() => addItem(left(), component, 1));
     return 1;
+  },
+  worldGiveAim: (active: boolean) => {
+    send('worldGiveCandidates', active ? worldPeds : []);
+    return 1;
+  },
+  worldGive: async ({ slot, count, target }: { slot: number; count: number; target: string }) => {
+    await sleep(settings.latency);
+    const item = left().items[slot - 1];
+    if (!isSlotWithItem(item) || worldPeds.find((ped) => ped.key === target)?.reason) return false;
+    const given = Math.min(count, item.count);
+    setCount(left(), item, item.count - given);
+    send('itemNotify', [item, 'ui_removed', given]);
+    return true;
   },
   useButton: ({ id, slot }: { id: number; slot: number }) => {
     console.info(`[dev] Botón ${id} del slot ${slot}`);

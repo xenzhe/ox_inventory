@@ -1696,6 +1696,16 @@ end
 
 exports('giveItemToTarget', giveItemToTarget)
 
+require('modules.worldgive.client')({
+    canGive = function() return invOpen == true and not usingItem and not invBusy end,
+    isOpen = function() return invOpen == true end,
+    disarm = function(slot)
+        if slot == currentWeapon?.slot then
+            currentWeapon = Weapon.Disarm(currentWeapon)
+        end
+    end,
+})
+
 local function isGiveTargetValid(ped, coords)
     if cache.vehicle and GetVehiclePedIsIn(ped, false) == cache.vehicle then
         return true

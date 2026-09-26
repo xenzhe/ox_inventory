@@ -1106,7 +1106,7 @@ body.inv-dragging {
 
 .item-notifications {
   position: absolute;
-  right: 2vh;
+  right: calc(2.5vw + 31.5rem);
   bottom: 22vh;
   display: flex;
   flex-direction: column;

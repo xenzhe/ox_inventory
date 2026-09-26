@@ -2,6 +2,7 @@ return {
 	Weapons = {
 		['WEAPON_BATTLERIFLE'] = {
 			label = 'Battle Rifle',
+			rarity = 'epic',
 			weight = 3300,
 			durability = 0.03,
 			ammoname = 'ammo-rifle2',
@@ -16,6 +17,7 @@ return {
 
 		['WEAPON_TECPISTOL'] = {
 			label = 'Tactical SMG',
+			rarity = 'uncommon',
 			weight = 1500,
 			durability = 0.075,
 			ammoname = 'ammo-9',
@@ -23,6 +25,7 @@ return {
 
 		['WEAPON_ADVANCEDRIFLE'] = {
 			label = 'Advanced Rifle',
+			rarity = 'rare',
 			weight = 3100,
 			durability = 0.03,
 			ammoname = 'ammo-rifle',
@@ -30,6 +33,7 @@ return {
 
 		['WEAPON_APPISTOL'] = {
 			label = 'AP Pistol',
+			rarity = 'uncommon',
 			weight = 1400,
 			durability = 0.1,
 			ammoname = 'ammo-9',
@@ -37,6 +41,7 @@ return {
 
 		['WEAPON_ASSAULTRIFLE'] = {
 			label = 'Assault Rifle',
+			rarity = 'rare',
 			weight = 4500,
 			durability = 0.03,
 			ammoname = 'ammo-rifle2',
@@ -44,6 +49,7 @@ return {
 
 		['WEAPON_ASSAULTRIFLE_MK2'] = {
 			label = 'Assault Rifle MK2',
+			rarity = 'epic',
 			weight = 2950,
 			durability = 0.03,
 			ammoname = 'ammo-rifle2',
@@ -51,6 +57,7 @@ return {
 
 		['WEAPON_ASSAULTSHOTGUN'] = {
 			label = 'Assault Shotgun',
+			rarity = 'rare',
 			weight = 5200,
 			durability = 0.05,
 			ammoname = 'ammo-shotgun'
@@ -58,6 +65,7 @@ return {
 
 		['WEAPON_ASSAULTSMG'] = {
 			label = 'Assault SMG',
+			rarity = 'rare',
 			weight = 2900,
 			durability = 0.05,
 			ammoname = 'ammo-rifle'
@@ -77,6 +85,7 @@ return {
 
 		['WEAPON_BATTLEAXE'] = {
 			label = 'Battle Axe',
+			rarity = 'uncommon',
 			weight = 6500,
 			durability = 0.1,
 		},
@@ -89,6 +98,7 @@ return {
 
 		['WEAPON_BULLPUPRIFLE'] = {
 			label = 'Bullpup Rifle',
+			rarity = 'rare',
 			weight = 2900,
 			durability = 0.03,
 			ammoname = 'ammo-rifle'
@@ -96,6 +106,7 @@ return {
 
 		['WEAPON_BULLPUPRIFLE_MK2'] = {
 			label = 'Bullpup Rifle MK2',
+			rarity = 'epic',
 			weight = 2900,
 			durability = 0.03,
 			ammoname = 'ammo-rifle'
@@ -103,6 +114,7 @@ return {
 
 		['WEAPON_BULLPUPSHOTGUN'] = {
 			label = 'Bullpup Shotgun',
+			rarity = 'rare',
 			weight = 3100,
 			durability = 0.2,
 			ammoname = 'ammo-shotgun'
@@ -110,12 +122,14 @@ return {
 
 		['WEAPON_BZGAS'] = {
 			label = 'BZ Gas',
+			rarity = 'rare',
 			weight = 600,
 			throwable = true,
 		},
 
 		['WEAPON_CARBINERIFLE'] = {
 			label = 'Carbine Rifle',
+			rarity = 'rare',
 			weight = 3100,
 			durability = 0.03,
 			ammoname = 'ammo-rifle'
@@ -123,6 +137,7 @@ return {
 
 		['WEAPON_CARBINERIFLE_MK2'] = {
 			label = 'Carbine Rifle MK2',
+			rarity = 'epic',
 			weight = 3000,
 			durability = 0.03,
 			ammoname = 'ammo-rifle'
@@ -130,6 +145,7 @@ return {
 
 		['WEAPON_CERAMICPISTOL'] = {
 			label = 'Ceramic Pistol',
+			rarity = 'common',
 			weight = 800,
 			durability = 0.2,
 			ammoname = 'ammo-9'
@@ -137,6 +153,7 @@ return {
 
 		['WEAPON_PISTOLXM3'] = {
 			label = 'WM 29 Pistol',
+			rarity = 'common',
 			weight = 969,
 			durability = 0.2,
 			ammoname = 'ammo-9'
@@ -144,6 +161,7 @@ return {
 
 		['WEAPON_COMBATMG'] = {
 			label = 'Combat MG',
+			rarity = 'epic',
 			weight = 7500,
 			durability = 0.02,
 			ammoname = 'ammo-rifle'
@@ -151,6 +169,7 @@ return {
 
 		['WEAPON_COMBATMG_MK2'] = {
 			label = 'Combat MG MK2',
+			rarity = 'epic',
 			weight = 8000,
 			durability = 0.02,
 			ammoname = 'ammo-rifle2'
@@ -158,6 +177,7 @@ return {
 
 		['WEAPON_COMBATPDW'] = {
 			label = 'Combat PDW',
+			rarity = 'rare',
 			weight = 2300,
 			durability = 0.1,
 			ammoname = 'ammo-9'
@@ -165,6 +185,7 @@ return {
 
 		['WEAPON_COMBATPISTOL'] = {
 			label = 'Combat Pistol',
+			rarity = 'common',
 			weight = 785,
 			durability = 0.2,
 			ammoname = 'ammo-9'
@@ -172,6 +193,7 @@ return {
 
 		['WEAPON_COMBATSHOTGUN'] = {
 			label = 'Combat Shotgun',
+			rarity = 'rare',
 			weight = 4400,
 			durability = 0.2,
 			ammoname = 'ammo-shotgun'
@@ -179,6 +201,7 @@ return {
 
 		['WEAPON_COMPACTLAUNCHER'] = {
 			label = 'Compact Grenade Launcher',
+			rarity = 'epic',
 			weight = 2500,
 			durability = 0.05,
 			ammoname = 'ammo-grenade'
@@ -186,6 +209,7 @@ return {
 
 		['WEAPON_COMPACTRIFLE'] = {
 			label = 'Compact Rifle',
+			rarity = 'rare',
 			weight = 3600,
 			durability = 0.05,
 			ammoname = 'ammo-rifle2'
@@ -205,6 +229,7 @@ return {
 
 		['WEAPON_DBSHOTGUN'] = {
 			label = 'Double Barrel Shotgun',
+			rarity = 'uncommon',
 			weight = 3175,
 			durability = 0.4,
 			ammoname = 'ammo-shotgun'
@@ -212,6 +237,7 @@ return {
 
 		['WEAPON_DOUBLEACTION'] = {
 			label = 'Double Action Revolver',
+			rarity = 'uncommon',
 			weight = 940,
 			durability = 0.2,
 			ammoname = 'ammo-38'
@@ -219,6 +245,7 @@ return {
 
 		['WEAPON_EMPLAUNCHER'] = {
 			label = 'Compact EMP Launcher',
+			rarity = 'legendary',
 			weight = 2750,
 			durability = 0.2,
 			ammoname = 'ammo-emp'
@@ -264,12 +291,14 @@ return {
 
 		['WEAPON_GRENADE'] = {
 			label = 'Grenade',
+			rarity = 'epic',
 			weight = 400,
 			throwable = true,
 		},
 
 		['WEAPON_GRENADELAUNCHER'] = {
 			label = 'Grenade Launcher',
+			rarity = 'epic',
 			weight = 6500,
 			durability = 0.05,
 			ammoname = 'ammo-grenade'
@@ -277,6 +306,7 @@ return {
 
 		['WEAPON_GUSENBERG'] = {
 			label = 'Gusenberg',
+			rarity = 'rare',
 			weight = 4900,
 			durability = 0.04,
 			ammoname = 'ammo-45'
@@ -290,12 +320,14 @@ return {
 
 		['WEAPON_HATCHET'] = {
 			label = 'Hatchet',
+			rarity = 'common',
 			weight = 1000,
 			durability = 0.1,
 		},
 
 		['WEAPON_HEAVYRIFLE'] = {
 			label = 'Heavy Rifle',
+			rarity = 'epic',
 			weight = 3300,
 			durability = 0.2,
 			ammoname = 'ammo-rifle'
@@ -313,6 +345,7 @@ return {
 
 		['WEAPON_HOMINGLAUNCHER'] = {
 			label = 'Homing Launcher',
+			rarity = 'legendary',
 			weight = 10000,
 			durability = 0.6,
 			ammoname = 'ammo-rocket'
@@ -325,6 +358,7 @@ return {
 
 		['WEAPON_HEAVYPISTOL'] = {
 			label = 'Heavy Pistol',
+			rarity = 'uncommon',
 			weight = 1100,
 			durability = 0.2,
 			ammoname = 'ammo-45'
@@ -332,6 +366,7 @@ return {
 
 		['WEAPON_HEAVYSHOTGUN'] = {
 			label = 'Heavy Shotgun',
+			rarity = 'rare',
 			weight = 3600,
 			durability = 0.1,
 			ammoname = 'ammo-shotgun'
@@ -339,6 +374,7 @@ return {
 
 		['WEAPON_HEAVYSNIPER'] = {
 			label = 'Heavy Sniper',
+			rarity = 'legendary',
 			weight = 12700,
 			durability = 0.5,
 			ammoname = 'ammo-heavysniper'
@@ -346,6 +382,7 @@ return {
 
 		['WEAPON_HEAVYSNIPER_MK2'] = {
 			label = 'Heavy Sniper MK2',
+			rarity = 'legendary',
 			weight = 14000,
 			durability = 0.5,
 			ammoname = 'ammo-heavysniper'
@@ -353,6 +390,7 @@ return {
 
 		['WEAPON_KNIFE'] = {
 			label = 'Knife',
+			rarity = 'common',
 			weight = 300,
 			durability = 0.1,
 		},
@@ -365,12 +403,14 @@ return {
 
 		['WEAPON_MACHETE'] = {
 			label = 'Machete',
+			rarity = 'common',
 			weight = 1000,
 			durability = 0.1,
 		},
 
 		['WEAPON_MACHINEPISTOL'] = {
 			label = 'Machine Pistol',
+			rarity = 'uncommon',
 			weight = 1400,
 			durability = 0.05,
 			ammoname = 'ammo-9'
@@ -378,6 +418,7 @@ return {
 
 		['WEAPON_MARKSMANPISTOL'] = {
 			label = 'Marksman Pistol',
+			rarity = 'uncommon',
 			weight = 1588,
 			durability = 0.5,
 			ammoname = 'ammo-22'
@@ -385,6 +426,7 @@ return {
 
 		['WEAPON_MARKSMANRIFLE'] = {
 			label = 'Marksman Rifle',
+			rarity = 'epic',
 			weight = 7500,
 			durability = 0.4,
 			ammoname = 'ammo-sniper'
@@ -392,6 +434,7 @@ return {
 
 		['WEAPON_MARKSMANRIFLE_MK2'] = {
 			label = 'Marksman Rifle MK2',
+			rarity = 'legendary',
 			weight = 4000,
 			durability = 0.4,
 			ammoname = 'ammo-sniper'
@@ -399,6 +442,7 @@ return {
 
 		['WEAPON_MG'] = {
 			label = 'Machine Gun',
+			rarity = 'epic',
 			weight = 9000,
 			durability = 0.02,
 			ammoname = 'ammo-rifle2'
@@ -406,6 +450,7 @@ return {
 
 		['WEAPON_MINIGUN'] = {
 			label = 'Minigun',
+			rarity = 'legendary',
 			weight = 38500,
 			durability = 0.1,
 			ammoname = 'ammo-rifle2'
@@ -413,6 +458,7 @@ return {
 
 		['WEAPON_MICROSMG'] = {
 			label = 'Micro SMG',
+			rarity = 'uncommon',
 			weight = 3000,
 			durability = 0.1,
 			ammoname = 'ammo-45'
@@ -420,6 +466,7 @@ return {
 
 		['WEAPON_MILITARYRIFLE'] = {
 			label = 'Military Rifle',
+			rarity = 'epic',
 			weight = 3600,
 			durability = 0.03,
 			ammoname = 'ammo-rifle'
@@ -427,6 +474,7 @@ return {
 
 		['WEAPON_MINISMG'] = {
 			label = 'Mini SMG',
+			rarity = 'uncommon',
 			weight = 1270,
 			durability = 0.05,
 			ammoname = 'ammo-9'
@@ -434,12 +482,14 @@ return {
 
 		['WEAPON_MOLOTOV'] = {
 			label = 'Molotov',
+			rarity = 'rare',
 			weight = 1800,
 			throwable = true,
 		},
 
 		['WEAPON_MUSKET'] = {
 			label = 'Musket',
+			rarity = 'uncommon',
 			weight = 4500,
 			durability = 0.5,
 			ammoname = 'ammo-musket'
@@ -447,6 +497,7 @@ return {
 
 		['WEAPON_NAVYREVOLVER'] = {
 			label = 'Navy Revolver',
+			rarity = 'uncommon',
 			weight = 4000,
 			durability = 0.2,
 			ammoname = 'ammo-44'
@@ -472,12 +523,14 @@ return {
 
 		['WEAPON_PIPEBOMB'] = {
 			label = 'Pipe Bomb',
+			rarity = 'epic',
 			weight = 1800,
 			throwable = true,
 		},
 
 		['WEAPON_PISTOL'] = {
 			label = 'Pistol',
+			rarity = 'common',
 			weight = 1130,
 			durability = 0.1,
 			ammoname = 'ammo-9',
@@ -485,6 +538,7 @@ return {
 
 		['WEAPON_PISTOL50'] = {
 			label = 'Pistol .50',
+			rarity = 'uncommon',
 			weight = 2000,
 			durability = 0.1,
 			ammoname = 'ammo-50'
@@ -492,6 +546,7 @@ return {
 
 		['WEAPON_PISTOL_MK2'] = {
 			label = 'Pistol MK2',
+			rarity = 'uncommon',
 			weight = 1000,
 			durability = 0.5,
 			ammoname = 'ammo-9'
@@ -511,12 +566,14 @@ return {
 
 		['WEAPON_PROXMINE'] = {
 			label = 'Proximity Mine',
+			rarity = 'epic',
 			weight = 2500,
 			throwable = true,
 		},
 
 		['WEAPON_PUMPSHOTGUN'] = {
 			label = 'Pump Shotgun',
+			rarity = 'uncommon',
 			weight = 3400,
 			durability = 0.1,
 			ammoname = 'ammo-shotgun'
@@ -524,6 +581,7 @@ return {
 
 		['WEAPON_PUMPSHOTGUN_MK2'] = {
 			label = 'Pump Shotgun MK2',
+			rarity = 'rare',
 			weight = 3200,
 			durability = 0.1,
 			ammoname = 'ammo-shotgun'
@@ -531,6 +589,7 @@ return {
 
 		['WEAPON_RAILGUN'] = {
 			label = 'Railgun',
+			rarity = 'legendary',
 			weight = 3570,
 			durability = 0.5,
 			ammoname = 'ammo-railgun'
@@ -538,6 +597,7 @@ return {
 
 		['WEAPON_RAILGUNXM3'] = {
 			label = 'Railgun XM3',
+			rarity = 'legendary',
 			weight = 3570,
 			durability = 0.5,
 			ammoname = 'ammo-railgun'
@@ -545,6 +605,7 @@ return {
 
 		['WEAPON_RAYCARBINE'] = {
 			label = 'Unholy Hellbringer',
+			rarity = 'legendary',
 			weight = 3620,
 			durability = 0.2,
 			ammoname = 'ammo-laser'
@@ -552,12 +613,14 @@ return {
 
 		['WEAPON_RAYPISTOL'] = {
 			label = 'Up-n-Atomizer',
+			rarity = 'epic',
 			weight = 1540,
 			durability = 0.5
 		},
 
 		['WEAPON_REVOLVER'] = {
 			label = 'Revolver',
+			rarity = 'uncommon',
 			weight = 2260,
 			durability = 0.1,
 			ammoname = 'ammo-44'
@@ -565,6 +628,7 @@ return {
 
 		['WEAPON_REVOLVER_MK2'] = {
 			label = 'Revolver MK2',
+			rarity = 'rare',
 			weight = 2600,
 			durability = 0.1,
 			ammoname = 'ammo-44'
@@ -572,6 +636,7 @@ return {
 
 		['WEAPON_RPG'] = {
 			label = 'RPG',
+			rarity = 'legendary',
 			weight = 5000,
 			durability = 0.3,
 			ammoname = 'ammo-rocket'
@@ -579,6 +644,7 @@ return {
 
 		['WEAPON_SAWNOFFSHOTGUN'] = {
 			label = 'Sawn Off Shotgun',
+			rarity = 'uncommon',
 			weight = 2380,
 			durability = 0.1,
 			ammoname = 'ammo-shotgun'
@@ -586,6 +652,7 @@ return {
 
 		['WEAPON_SMG'] = {
 			label = 'SMG',
+			rarity = 'rare',
 			weight = 3084,
 			durability = 0.8,
 			ammoname = 'ammo-9'
@@ -593,6 +660,7 @@ return {
 
 		['WEAPON_SMG_MK2'] = {
 			label = 'SMG Mk2',
+			rarity = 'rare',
 			weight = 2700,
 			durability = 0.05,
 			ammoname = 'ammo-9'
@@ -600,12 +668,14 @@ return {
 
 		['WEAPON_SMOKEGRENADE'] = {
 			label = 'Smoke Grenade',
+			rarity = 'rare',
 			weight = 600,
 			throwable = true,
 		},
 
 		['WEAPON_SNIPERRIFLE'] = {
 			label = 'Sniper Rifle',
+			rarity = 'legendary',
 			weight = 5000,
 			durability = 0.5,
 			ammoname = 'ammo-sniper'
@@ -619,6 +689,7 @@ return {
 
 		['WEAPON_SNSPISTOL'] = {
 			label = 'SNS Pistol',
+			rarity = 'common',
 			weight = 465,
 			durability = 0.1,
 			ammoname = 'ammo-45'
@@ -626,6 +697,7 @@ return {
 
 		['WEAPON_SNSPISTOL_MK2'] = {
 			label = 'SNS Pistol MK2',
+			rarity = 'uncommon',
 			weight = 465,
 			durability = 0.1,
 			ammoname = 'ammo-45'
@@ -633,6 +705,7 @@ return {
 
 		['WEAPON_SPECIALCARBINE'] = {
 			label = 'Special Carbine',
+			rarity = 'rare',
 			weight = 3000,
 			durability = 0.03,
 			ammoname = 'ammo-rifle'
@@ -640,6 +713,7 @@ return {
 
 		['WEAPON_SPECIALCARBINE_MK2'] = {
 			label = 'Special Carbine MK2',
+			rarity = 'epic',
 			weight = 3370,
 			durability = 0.03,
 			ammoname = 'ammo-rifle'
@@ -647,6 +721,7 @@ return {
 
 		['WEAPON_STICKYBOMB'] = {
 			label = 'Sticky Bomb',
+			rarity = 'epic',
 			weight = 1000,
 			throwable = true,
 		},
@@ -665,6 +740,7 @@ return {
 
 		['WEAPON_AUTOSHOTGUN'] = {
 			label = 'Sweeper Shotgun',
+			rarity = 'rare',
 			weight = 4400,
 			durability = 0.05,
 			ammoname = 'ammo-shotgun'
@@ -672,6 +748,7 @@ return {
 
 		['WEAPON_SWITCHBLADE'] = {
 			label = 'Switchblade',
+			rarity = 'common',
 			weight = 300,
 			durability = 0.1,
 			anim = { 'anim@melee@switchblade@holster', 'unholster', 200, 'anim@melee@switchblade@holster', 'holster', 600 },
@@ -679,6 +756,7 @@ return {
 
 		['WEAPON_VINTAGEPISTOL'] = {
 			label = 'Vintage Pistol',
+			rarity = 'common',
 			weight = 700,
 			durability = 0.1,
 			ammoname = 'ammo-9'
@@ -686,6 +764,7 @@ return {
 
 		['WEAPON_RAYMINIGUN'] = {
 			label = 'Widowmaker',
+			rarity = 'legendary',
 			weight = 7000,
 			durability = 0.1,
 			ammoname = 'ammo-laser'
@@ -699,6 +778,7 @@ return {
 
 		['WEAPON_PRECISIONRIFLE'] = {
 			label = 'Precision Rifle',
+			rarity = 'epic',
 			weight = 4800,
 			durability = 0.4,
 			ammoname = 'ammo-sniper'
@@ -706,6 +786,7 @@ return {
 
 		['WEAPON_TACTICALRIFLE'] = {
 			label = 'Tactical Rifle',
+			rarity = 'epic',
 			weight = 3400,
 			durability = 0.03,
 			ammoname = 'ammo-rifle'

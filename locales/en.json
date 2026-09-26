@@ -43,6 +43,7 @@
   "ui_key_ctrl": "Ctrl",
   "ui_key_shift": "Shift",
   "ui_key_esc": "Esc",
+  "ui_rarity_common": "Common",
   "ui_rarity_uncommon": "Uncommon",
   "ui_rarity_rare": "Rare",
   "ui_rarity_epic": "Epic",

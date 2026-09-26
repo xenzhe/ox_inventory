@@ -537,6 +537,9 @@ body.is-world-aiming .inventory-panel {
     box-shadow: inset 0 0.75rem 1.25rem -1.125rem var(--rarity);
   }
 
+  &[data-rarity='common'] {
+    --rarity: transparent;
+  }
   &[data-rarity='uncommon'] {
     --rarity: var(--rarity-uncommon);
   }
@@ -696,6 +699,9 @@ body.inv-dragging {
     display: none;
   }
 
+  &[data-rarity='common'] {
+    --rarity: var(--text-faint);
+  }
   &[data-rarity='uncommon'] {
     --rarity: var(--rarity-uncommon);
   }

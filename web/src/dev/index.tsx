@@ -58,7 +58,7 @@ const loadScenario = (id: string) => {
       type: 'player',
       slots: 50,
       label: 'Marcus Vega · 14',
-      maxWeight: scenario.playerMaxWeight ?? 30000,
+      maxWeight: scenario.playerMaxWeight ?? 50000,
       groups: scenario.groups,
       items: (scenario.player ?? player)(),
     },

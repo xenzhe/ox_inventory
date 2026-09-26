@@ -94,6 +94,7 @@ return {
 
 	['parachute'] = {
 		label = 'Parachute',
+		rarity = 'rare',
 		weight = 8000,
 		stack = false,
 		client = {
@@ -135,11 +136,13 @@ return {
 
 	['lockpick'] = {
 		label = 'Lockpick',
+		rarity = 'uncommon',
 		weight = 160,
 	},
 
 	['phone'] = {
 		label = 'Phone',
+		rarity = 'uncommon',
 		weight = 190,
 		stack = false,
 		consume = 0,
@@ -189,6 +192,7 @@ return {
 
 	['radio'] = {
 		label = 'Radio',
+		rarity = 'uncommon',
 		weight = 1000,
 		stack = false,
 		allowArmed = true
@@ -196,6 +200,7 @@ return {
 
 	['armour'] = {
 		label = 'Bulletproof Vest',
+		rarity = 'rare',
 		weight = 3000,
 		stack = false,
 		client = {
@@ -211,6 +216,7 @@ return {
 
 	['mastercard'] = {
 		label = 'Fleeca Card',
+		rarity = 'epic',
 		stack = false,
 		weight = 10,
 		client = {

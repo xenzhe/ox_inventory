@@ -172,7 +172,7 @@ const rarities = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
 
 export const getRarity = (item: SlotWithItem): { tier?: string; color?: string } | undefined => {
   const value: unknown = item.metadata?.rarity ?? Items[item.name]?.rarity;
-  if (typeof value !== 'string' || value === '' || value === 'common') return;
+  if (typeof value !== 'string' || value === '') return;
   if (rarities.includes(value)) return { tier: value };
   if (/^#[0-9a-f]{6}$/i.test(value)) return { color: value };
 };

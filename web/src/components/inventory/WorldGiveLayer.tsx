@@ -6,6 +6,7 @@ import useNuiEvent from '../../hooks/useNuiEvent';
 import { store } from '../../store';
 import { t } from '../../store/locale';
 import { getItemLabel } from '../../helpers';
+import { onDropGround } from '../../dnd/onDropGround';
 
 type Candidate = {
   key: string;
@@ -75,9 +76,11 @@ const WorldGiveLayer: React.FC = () => {
       drop: (item) => {
         const target = targetRef.current;
 
-        if (!target || target.reason) return;
-
         const { count } = giveCount(item);
+
+        if (!target) return onDropGround(item.item.slot, count);
+
+        if (target.reason) return;
 
         setSent(target.key);
         setTimeout(() => setSent(null), 450);
@@ -189,15 +192,13 @@ const WorldGiveLayer: React.FC = () => {
           className={`world-give-chip ${target ? (status ? 'is-invalid' : 'is-ready') : ''}`}
           style={{ left: cursor.x, top: cursor.y }}
         >
-          {target
-            ? (status ?? (
-                <>
-                  <b>{t('ui_give_to')}</b>
-                  <span>{label}</span>
-                  {info && info.count > 1 && <em>×{info.count.toLocaleString('en-US')}</em>}
-                </>
-              ))
-            : t('ui_give_hint')}
+          {status ?? (
+            <>
+              <b className={target ? undefined : 'is-drop'}>{t(target ? 'ui_give_to' : 'ui_drop')}</b>
+              <span>{label}</span>
+              {info && info.count > 1 && <em>×{info.count.toLocaleString('en-US')}</em>}
+            </>
+          )}
         </div>
       )}
     </div>

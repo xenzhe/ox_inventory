@@ -1098,15 +1098,11 @@ RegisterNetEvent('ox_inventory:createDrop', function(dropId, data, owner, slot)
 			currentWeapon = Weapon.Disarm(currentWeapon)
 		end
 
-		if invOpen and #(GetEntityCoords(playerPed) - data.coords) <= 1 then
-			if not cache.vehicle then
-				client.openInventory('drop', dropId)
-			else
-				SendNUIMessage({
-					action = 'setupInventory',
-					data = { rightInventory = currentInventory }
-				})
-			end
+		if invOpen and currentInventory?.type == 'newdrop' then
+			SendNUIMessage({
+				action = 'setupInventory',
+				data = { rightInventory = currentInventory }
+			})
 		end
 	end
 end)

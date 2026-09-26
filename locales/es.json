@@ -63,7 +63,6 @@
   "ui_give_far": "Demasiado lejos",
   "ui_give_blocked": "Fuera de vista",
   "ui_give_npc": "NPC de prueba",
-  "ui_give_hint": "Suelta sobre un jugador cercano para dárselo",
   "testdrag_help": "Crea o quita un NPC de prueba para probar arrastrar y dar",
   "testdrag_action_help": "Vacío para alternar, u \"open\" para ver lo que recibió",
   "testdrag_npc": "NPC de prueba",

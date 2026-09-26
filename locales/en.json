@@ -63,7 +63,6 @@
   "ui_give_far": "Too far",
   "ui_give_blocked": "Not in sight",
   "ui_give_npc": "Test NPC",
-  "ui_give_hint": "Drop on a nearby player to give",
   "testdrag_help": "Spawn or remove a test NPC to try drag-to-give",
   "testdrag_action_help": "Leave empty to toggle, or \"open\" to see what it received",
   "testdrag_npc": "Test NPC",

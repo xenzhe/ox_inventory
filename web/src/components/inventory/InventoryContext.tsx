@@ -10,6 +10,7 @@ import { useAppSelector } from '../../store';
 import React, { useEffect, useState } from 'react';
 import { Menu, MenuItem } from '../utils/menu/Menu';
 import AmountInput from '../utils/AmountInput';
+import { onDropGround } from '../../dnd/onDropGround';
 
 interface DataProps {
   action: string;
@@ -69,8 +70,11 @@ const InventoryContext: React.FC = () => {
       case 'give':
         onGive({ name: item.name, slot: item.slot }, count);
         break;
-      case 'drop':
+      case 'move':
         isSlotWithItem(item) && onDrop({ item: item, inventory: 'player' }, undefined, count);
+        break;
+      case 'drop':
+        onDropGround(item.slot, count);
         break;
       case 'split':
         emptySlot &&
@@ -168,7 +172,7 @@ const InventoryContext: React.FC = () => {
         {canMove && (
           <MenuItem
             icon="move"
-            onClick={() => handleClick({ action: 'drop' })}
+            onClick={() => handleClick({ action: 'move' })}
             label={t('ui_move_to', rightTitle)}
             meta={stack ? `×${count}` : undefined}
           />
@@ -224,18 +228,14 @@ const InventoryContext: React.FC = () => {
               ))}
           </>
         )}
-        {rightIsGround && (
-          <>
-            <hr className="context-menu-divider" />
-            <MenuItem
-              icon="trash"
-              danger
-              onClick={() => handleClick({ action: 'drop' })}
-              label={t('ui_drop')}
-              meta={stack ? `×${count}` : undefined}
-            />
-          </>
-        )}
+        <hr className="context-menu-divider" />
+        <MenuItem
+          icon="trash"
+          danger
+          onClick={() => handleClick({ action: 'drop' })}
+          label={t('ui_drop')}
+          meta={stack ? `×${count}` : undefined}
+        />
       </Menu>
     </>
   );

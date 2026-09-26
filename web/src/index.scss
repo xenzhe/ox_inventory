@@ -399,11 +399,25 @@ input[type='number']::-webkit-outer-spin-button {
 .inventory-wrapper {
   position: relative;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 1.75rem;
+  justify-content: flex-end;
+  align-items: flex-end;
   height: 100%;
+  padding: 3.5vh 2.5vw;
+}
+
+.inventory-column {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-height: 100%;
+}
+
+.column-brand {
+  align-self: flex-end;
+  margin-top: -0.25rem;
+  opacity: 0.8;
 }
 
 .inventory-panel {
@@ -1328,6 +1342,10 @@ body.inv-dragging {
     font-weight: 600;
     color: var(--text);
     font-variant-numeric: tabular-nums;
+  }
+
+  b.is-drop {
+    color: var(--text-muted);
   }
 
   &.is-ready {

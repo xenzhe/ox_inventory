@@ -11,6 +11,8 @@ import AmountInput from '../utils/AmountInput';
 import UsefulControls from './UsefulControls';
 
 const PAGE_SIZE = 30;
+const COLUMNS = 5;
+const MAX_SECONDARY_ROWS = 3;
 
 const typeIcons: Record<string, IconName> = {
   player: 'user',
@@ -61,9 +63,6 @@ const RightFooter: React.FC<{ used: number; slots: number }> = ({ used, slots })
       <Key>{t('ui_key_esc')}</Key>
       <span>{t('ui_close')}</span>
     </span>
-    <span className="brand">
-      xenzhe<b>_</b>
-    </span>
   </>
 );
 
@@ -84,6 +83,7 @@ const InventoryGrid: React.FC<{ inventory: Inventory; side: 'left' | 'right' }> 
     }
   }, [entry]);
 
+  const rows = Math.min(Math.max(Math.ceil(inventory.slots / COLUMNS), 1), MAX_SECONDARY_ROWS);
   const percent = inventory.maxWeight ? Math.min(100, (weight / inventory.maxWeight) * 100) : 0;
   const titleKey = `ui_inv_${inventory.type}`;
   const title = Locale[titleKey] ?? inventory.label ?? inventory.type;
@@ -111,7 +111,11 @@ const InventoryGrid: React.FC<{ inventory: Inventory; side: 'left' | 'right' }> 
       <div className={`weight-bar ${percent >= 95 ? 'is-full' : percent >= 80 ? 'is-warn' : ''}`}>
         <i style={{ width: `${percent}%` }} />
       </div>
-      <div className="inventory-grid" ref={containerRef}>
+      <div
+        className="inventory-grid"
+        ref={containerRef}
+        style={side === 'right' ? ({ '--rows': rows } as React.CSSProperties) : undefined}
+      >
         {inventory.items.slice(0, (page + 1) * PAGE_SIZE).map((item, index) => (
           <InventorySlot
             key={`${inventory.type}-${inventory.id}-${item.slot}`}

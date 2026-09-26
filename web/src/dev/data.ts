@@ -293,9 +293,25 @@ export const scenarios: Scenario[] = [
   },
   {
     id: 'ground',
-    label: 'Suelo vacío',
-    hint: 'Inventario vacío: el menú muestra "Tirar" en vez de "Mover a".',
+    label: 'Solo bolsillos',
+    hint: 'Sin contenedor: el suelo vacío no se muestra. Arrastra fuera para tirar.',
     right: () => ({ id: 'newdrop', type: 'newdrop', slots: 30, label: '', maxWeight: 30000, items: [] }),
+  },
+  {
+    id: 'pile',
+    label: 'Montón en el suelo',
+    hint: 'Un drop con objetos cerca: sí se muestra y tirar lo añade a ese montón.',
+    right: () => ({
+      id: 'drop-8812',
+      type: 'drop',
+      slots: 30,
+      label: 'Drop 8812',
+      maxWeight: 30000,
+      items: withWeight([
+        { slot: 1, name: 'garbage', count: 2 },
+        { slot: 2, name: 'WEAPON_KNIFE', count: 1, metadata: { durability: 70 } },
+      ]),
+    }),
   },
   {
     id: 'frisk',

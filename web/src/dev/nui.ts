@@ -10,8 +10,8 @@ export const send = (action: string, data?: unknown) =>
 export const settings = { rejectNext: false, latency: 120 };
 
 export const worldPeds = [
-  { key: 'npc', x: 0.875, top: 0.3, bottom: 0.82, npc: true },
-  { key: 'p:27', x: 0.205, top: 0.46, bottom: 0.7, reason: 'far' },
+  { key: 'npc', x: 0.5, top: 0.3, bottom: 0.82, npc: true },
+  { key: 'p:27', x: 0.27, top: 0.44, bottom: 0.7, reason: 'far' },
 ];
 
 export type LogEntry = { time: string; event: string; data: string; result: string };
@@ -127,11 +127,15 @@ const handlers: Record<string, (data: any) => unknown | Promise<unknown>> = {
     send('itemNotify', [item, 'ui_removed', given]);
     return 1;
   },
-  swapItems: async () => {
+  swapItems: async (data: { fromSlot: number; toType: string; count: number }) => {
     await sleep(settings.latency);
     if (settings.rejectNext) {
       settings.rejectNext = false;
       return false;
+    }
+    if (data.toType === 'newdrop') {
+      const item = left().items[data.fromSlot - 1];
+      if (isSlotWithItem(item)) setCount(left(), item, item.count - Math.min(data.count, item.count));
     }
     syncItemCounts();
     return true;

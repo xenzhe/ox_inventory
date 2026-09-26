@@ -6,7 +6,13 @@ A redesign of [ox_inventory](https://github.com/overextended/ox_inventory) focus
 
 Built on ox_inventory **v2.47.9** by [Overextended](https://github.com/overextended). Released under the same GPL-3.0 licence.
 
+[![Watch the showcase](.github/media/showcase.jpg)](.github/media/showcase.mp4)
+
+**[▶ Watch the showcase](.github/media/showcase.mp4)** (58 s)
+
 </div>
+
+![Drag an item onto a player to give it](.github/media/drag-to-give.gif)
 
 ## What's different
 

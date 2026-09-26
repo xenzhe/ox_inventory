@@ -861,6 +861,10 @@ body.inv-dragging {
   color: var(--text-faint);
 }
 
+.context-menu-overlay {
+  z-index: 30;
+}
+
 .context-menu-list {
   min-width: 14.25rem;
   max-width: 18rem;

@@ -1,14 +1,14 @@
 <div align="center">
 
-# ox_inventory Â· Xenzhe edit
+# ox_inventory · Xenzhe edit
 
 A redesign of [ox_inventory](https://github.com/overextended/ox_inventory) focused on feel: a compact, right-side layout, a context menu that handles quantities, drag-to-give and drag-to-drop straight into the world, and item rarity. Everything else is the ox_inventory you already run.
 
 Built on ox_inventory **v2.47.9** by [Overextended](https://github.com/overextended). Released under the same GPL-3.0 licence.
 
-[![Watch the showcase](.github/media/showcase.jpg)](.github/media/showcase.mp4)
+[![Watch the showcase on YouTube](.github/media/showcase.jpg)](https://youtu.be/SRHO9zTUJKM)
 
-**[▶ Watch the showcase](.github/media/showcase.mp4)** (58 s)
+**[▶ Watch the showcase on YouTube](https://youtu.be/SRHO9zTUJKM)** · **[⬇ Download v1.0.0](https://github.com/xenzhe/ox_inventory/releases/latest)** · **[🌐 xenzhe.com](https://xenzhe.com)**
 
 </div>
 
@@ -32,7 +32,7 @@ Built on ox_inventory **v2.47.9** by [Overextended](https://github.com/overexten
 
 ### Context menu
 
-- Right-click an item to pick an amount (`âˆ’` / `+`, mouse wheel, `Â½`, `All`) before acting on it.
+- Right-click an item to pick an amount (`−` / `+`, mouse wheel, `½`, `All`) before acting on it.
 - **Give**, **Split**, **Move to &lt;trunk / stash&gt;** and **Drop** all use that amount and show it next to the action.
 - Weapon options (remove ammo, attachments, copy serial) and custom item buttons are still there.
 
@@ -105,6 +105,14 @@ For everything else (items, shops, stashes, exports, hooks), the official docume
 ## Supported frameworks
 
 Same as upstream: [ox_core](https://github.com/overextended/ox_core), [esx](https://github.com/esx-framework/esx_core), [qbox](https://github.com/Qbox-project/qbx_core) and [nd_core](https://github.com/ND-Framework/ND_Core).
+
+## More from Xenzhe
+
+<a href="https://xenzhe.com"><b>xenzhe.com</b></a>: FiveM scripts, UIs and custom work built with the same attention to detail as this inventory. Free releases, paid resources and commissions.
+
+- Need a custom UI, a job, or a whole system for your server? [Get in touch through xenzhe.com](https://xenzhe.com).
+- Showcases of every release on [YouTube](https://youtu.be/SRHO9zTUJKM).
+- If this fork saves you time, a ⭐ on the repo helps a lot.
 
 ## Credits
 
